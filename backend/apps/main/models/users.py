@@ -11,7 +11,7 @@ from django.db.models import (
 
 def avatar_upload_to(instance, filename):
     name, ext = os.path.splitext(filename.lower())
-    return f'avatars/{instance.user.username}/{secrets.token_urlsafe(16)}{ext}'
+    return f'media/avatars/{instance.user.username}/{secrets.token_urlsafe(16)}{ext}'
 
 
 class Profile(Model):

@@ -3,6 +3,6 @@ psycopg2-binary == 2.8.5
 djangorestframework == 3.11.0
 Pillow == 6.0.0
 requests == 2.18.4
-sorl-thumbnail==12.5.0
+sorl-thumbnail
 
 gunicorn == 19.9.0

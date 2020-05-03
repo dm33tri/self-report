@@ -1,55 +1,34 @@
-# from django.contrib.auth.models import User
-#
-# from rest_framework import serializers
-#
-# from main.models import Dialogue, Profile, Message
-#
-#
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['id', 'username', 'email', 'name']
-#
-#
-# class DialogueSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Dialogue
-#         fields = [
-#
-#         ]
-#     name = serializers.CharField(max_length=100)
-#     description = serializers.CharField(max_length=200)
-#     # sender = pass
-#     # recepient = pass
-#
-#
-# class ProfileShortSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Profile
-#         fields = ['user', 'supervisor_id']
-#
-#
-# class MessageSerializer(serializers.ModelSerializer):
-#
-#
-#     class Meta:
-#         model = Message
-#         fields = [
-#             'text',
-#             'media',
-#             'date',
-#             'recipient',
-#             'sender',
-#             'dialogue'
-#         ]
-#     text = serializers.CharField()
-#     media = serializers.ListField(child=serializers.CharField())
-#     date = serializers.DateTimeField()
-#     pass
-
-
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from rest_framework.fields import CharField, SerializerMethodField, IntegerField, ImageField
+
+from sorl.thumbnail import get_thumbnail
+from django.conf import settings
+
+
+from apps.main.models.users import Profile
+
+
+class FullUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'first_name', 'last_name']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = FullUserSerializer(read_only=True)
+    job_position = CharField()
+    supervisor_id = IntegerField()
+    avatar = ImageField()
+
+    class Meta:
+        model = Profile
+        fields = [
+            'user',
+            'job_position',
+            'avatar',
+            'supervisor_id'
+        ]
 
 
 class UserSerializer(serializers.ModelSerializer):

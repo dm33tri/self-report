@@ -1,26 +1,12 @@
-# from rest_framework.exceptions import ValidationError, PermissionDenied
-# from rest_framework.generics import ListAPIView, get_object_or_404, GenericAPIView
-#
-# # from main.models import Problem, ProblemComment, ProblemRef, File
-# from main.serializers import ProblemCommentSerializer
-#
-#
-# class ProblemCommentsView(ListAPIView):
-#
-#     serializer_class = ProblemCommentSerializer
-#
-#     def get_queryset(self):
-#         problem = get_object_or_404(ProblemRef, uuid=self.kwargs['uuid'])
-#         if not problem.can_read(self.request.user):
-#             if not problem.has_restricted_access(self.request):
-#                 raise PermissionDenied
-#         return problem.problem.problemcomment_set.order_by('-id')
-#
-
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework.generics import ListAPIView, get_object_or_404, GenericAPIView
 from rest_framework import permissions
-from apps.main.serializers import UserSerializer, GroupSerializer
+from apps.main.serializers import (
+    UserSerializer, GroupSerializer, FullUserSerializer,
+    ProfileSerializer
+)
+from apps.main.models.users import Profile
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -39,3 +25,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class UserView(ListAPIView):
+
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+
+        user = Profile.objects.filter(user_id=self.kwargs['id'])
+        return user
