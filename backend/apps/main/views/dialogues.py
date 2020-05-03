@@ -7,18 +7,6 @@ from apps.main.serializers import (
 from apps.main.models.dialogues import Dialogue
 
 
-class DialogueView(ListAPIView):
-
-    serializer_class = DialogueSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        print('!!!!!')
-        print(Dialogue.objects.all()[0].__dict__)
-        user = Dialogue.objects.filter(user_id=self.kwargs['id'])
-        return user
-
-
 class DialogueRecipientView(ListAPIView):
 
     serializer_class = DialogueSerializer

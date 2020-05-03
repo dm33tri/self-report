@@ -8,6 +8,7 @@ from rest_framework.fields import (
 
 from apps.main.models.users import Profile
 from apps.main.models.dialogues import Dialogue
+from apps.main.models.messages import Message
 
 
 class FullUserSerializer(serializers.ModelSerializer):
@@ -42,8 +43,32 @@ class DialogueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dialogue
         fields = [
+            'id',
             'name',
             'description',
             'recipient',
             'sender'
+        ]
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    text = CharField()
+    media = serializers.ListField(child=serializers.CharField())
+    date = DateTimeField()
+
+    # dialogue = pass TODO
+    recipient = ProfileSerializer()
+    sender = ProfileSerializer()
+    dialogue = DialogueSerializer()
+
+    class Meta:
+        model = Message
+        fields = [
+            'id',
+            'text',
+            'media',
+            'date',
+            'recipient',
+            'sender',
+            'dialogue'
         ]
