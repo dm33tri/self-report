@@ -12,7 +12,7 @@ export default (req, res) => {
     const form = new formidable.IncomingForm();
     form.uploadDir = './public';
     form.keepExtensions = true;
-    let newMessage = { out: true, date: messages.length };
+    let newMessage = { out: true, date: messages.length + 1 };
 
     return form.parse(req)
         .on('file', (name, file) => {

@@ -17,13 +17,10 @@ export default function Header({ userName }) {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                position: sticky;
-                top: 0;
-                left: 0;
                 padding: 0 64px;
                 box-sizing: border-box;
                 background: #fff;
-                box-shadow: 1px 0 6px #ccc;
+                box-shadow: 0 0 6px #ccc;
                 color: #000;
             }
             
