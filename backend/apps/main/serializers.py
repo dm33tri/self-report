@@ -1,12 +1,13 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_framework.fields import CharField, SerializerMethodField, IntegerField, ImageField
-
-from sorl.thumbnail import get_thumbnail
-from django.conf import settings
+from rest_framework.fields import (
+    CharField, SerializerMethodField,
+    IntegerField, ImageField, DateTimeField
+)
 
 
 from apps.main.models.users import Profile
+from apps.main.models.dialogues import Dialogue
 
 
 class FullUserSerializer(serializers.ModelSerializer):
@@ -31,13 +32,18 @@ class ProfileSerializer(serializers.ModelSerializer):
         ]
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'groups']
+class DialogueSerializer(serializers.ModelSerializer):
+    name = CharField()
+    description = CharField()
 
+    recipient = ProfileSerializer()
+    sender = ProfileSerializer()
 
-class GroupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
-        fields = ['id', 'name']
+        model = Dialogue
+        fields = [
+            'name',
+            'description',
+            'recipient',
+            'sender'
+        ]
