@@ -8,6 +8,12 @@ up-front:
 	docker-compose build $(FRONT)
 	docker-compose up $(FRONT)
 
+.PHONY: up-back
+
+up-back:
+	docker-compose build $(BACK)
+	docker-compose up $(BACK)
+
 .PHONY: up
 
 up:
