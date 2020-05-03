@@ -4,6 +4,7 @@ echo "Environment: $ENV"
 set -a
 source /app/django_config
 python /app/wait_for_postgres.py
+pythin /app/manage.py makemigrations main
 python /app/manage.py migrate
 
 if [ "$ENV" = "dev" ]; then
