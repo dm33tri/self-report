@@ -10,6 +10,6 @@ up-front:
 
 .PHONY: up
 
-up-front:
+up:
 	docker-compose build $(NGINX)
 	docker-compose up $(NGINX)
