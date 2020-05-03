@@ -2,7 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 
 from django.db.models import (
     Model, ForeignKey, DateTimeField,
-    TextField, CASCADE, CharField, OneToOneField
+    TextField, CASCADE, CharField
 )
 
 from .users import Profile
@@ -18,15 +18,15 @@ class Message(Model):
     date = DateTimeField('Время создания', auto_now_add=True)
 
     # dialogue = pass TODO
-    recipient = OneToOneField(
+    recipient = ForeignKey(
         Profile, verbose_name='Получатель',
         on_delete=CASCADE, related_name='message_recipient'
     )
-    sender = OneToOneField(
+    sender = ForeignKey(
         Profile, verbose_name='Отправитель',
         on_delete=CASCADE, related_name='message_sender'
     )
-    dialogue = OneToOneField(
+    dialogue = ForeignKey(
         Dialogue, verbose_name='Диалог',
         on_delete=CASCADE, related_name='dialogue_related'
     )
