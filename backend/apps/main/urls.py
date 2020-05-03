@@ -34,4 +34,5 @@ urlpatterns = [
         messages.MessageRecipientDialogueView.as_view(),
         name='messages_recipient_dialogue'
     ),
+    path('send_message/<str:pk>/', messages.CreateMessageView.as_view()),
 ]

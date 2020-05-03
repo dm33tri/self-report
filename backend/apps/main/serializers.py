@@ -11,6 +11,26 @@ from apps.main.models.dialogues import Dialogue
 from apps.main.models.messages import Message
 
 
+class IdUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id']
+
+
+class IdProfileSerializer(serializers.ModelSerializer):
+    user = IdUserSerializer(read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['user']
+
+
+class IdDialogueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dialogue
+        fields = ['id']
+
+
 class FullUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -56,10 +76,9 @@ class MessageSerializer(serializers.ModelSerializer):
     media = serializers.ListField(child=serializers.CharField())
     date = DateTimeField()
 
-    # dialogue = pass TODO
-    recipient = ProfileSerializer()
-    sender = ProfileSerializer()
-    dialogue = DialogueSerializer()
+    recipient = IdProfileSerializer(read_only=True)
+    sender = IdProfileSerializer(read_only=True)
+    dialogue = IdDialogueSerializer(read_only=True)
 
     class Meta:
         model = Message
