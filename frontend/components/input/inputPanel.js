@@ -25,8 +25,8 @@ export default function InputPanel() {
     return (
         <>
             <form className="container" onSubmit={onSubmit} >
-                {record && <audio src={URL.createObjectURL(record)} controls /> ||
-                isRecording && <RecordProgress /> ||
+                {isRecording && <RecordProgress /> ||
+                record && <audio src={URL.createObjectURL(record)} controls /> ||
                 <input 
                     name="text" 
                     className="input" 
@@ -54,7 +54,7 @@ export default function InputPanel() {
 
                 audio {
                     width: 100%;
-                    height: 32px;
+                    height: 40px;
                     margin: 0 10px;
                     outline: none;
                 }
