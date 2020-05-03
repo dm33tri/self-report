@@ -6,6 +6,7 @@ from django.db.models import (
 )
 
 from .users import Profile
+from .dialogues import Dialogue
 
 
 class Message(Model):
@@ -25,6 +26,11 @@ class Message(Model):
         Profile, verbose_name='Отправитель',
         on_delete=CASCADE, related_name='message_sender'
     )
+    dialogue = OneToOneField(
+        Dialogue, verbose_name='Диалог',
+        on_delete=CASCADE, related_name='dialogue_related'
+    )
+
     def can_edit(self, user):
         return user.is_authenticated and user.id == self.sender_id
 
