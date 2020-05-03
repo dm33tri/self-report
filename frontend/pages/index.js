@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ic_settings_voice } from 'react-icons-kit/md/ic_settings_voice'
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
+        <ic_settings_voice />
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
