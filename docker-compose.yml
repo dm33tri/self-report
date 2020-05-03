@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  frontend:
+    build: frontend
+    expose:
+      - 3000
+    volumes:
+      - ./frontend:/src
+    environment:
+      - ENV=dev
