@@ -5,7 +5,6 @@ export class VoiceRecorder {
 
     recordData = () => {
         this.analyser.getByteFrequencyData(this.loudness);
-        console.log(this.loudness);
     }
 
     startRecording = async () => {
@@ -37,9 +36,8 @@ export class VoiceRecorder {
 
         return new Promise((resolve) => {
             this.recorder.addEventListener('stop', () => {
-                const blob = new Blob(this.chunks);
-                const url = URL.createObjectURL(blob);
-                resolve(url);
+                const blob = new Blob(this.chunks,  { 'type': 'audio/ogg; codecs=opus' });
+                resolve(blob);
             });
 
             stream.getTracks().forEach((track) => track.stop());

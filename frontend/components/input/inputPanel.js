@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RecordButton from './recordButton';
 
+import sendMessage from '../../actions/sendMessage';
+
 export default function InputPanel() {
+    const [text, setText] = useState('');
+    const [record, setRecord] = useState(null);
+    const stopRecording = (blob) => setRecord(blob);
+    const onSubmit = (event) => {
+        sendMessage({ text, audio: record });
+        setText('');
+        setRecord(null);
+        event.preventDefault();
+    };
+    
     return (
         <>
             <div>
-                <input className="input" type="text" />
-                <RecordButton />
-                <button type="submit" />
+                <form onSubmit={onSubmit} >
+                    {record 
+                        ? <audio src={URL.createObjectURL(record)} controls /> 
+                        : <input name="text" className="input" type="text"  value={text} onChange={(event) => setText(event.target.value)} />}
+                    <RecordButton onStopRecording={stopRecording} />
+                    <button type="submit" />
+                </form>
+                
             </div>
 
             <style jsx>{`
@@ -17,6 +34,12 @@ export default function InputPanel() {
                 justify-content: space-between;
                 display: flex;
 
+                audio {
+                    height: 32px;
+                    margin: 0 10px;
+                    outline: none;
+                }
+
                 button {
                     width: 32px;
                     height: 32px;
@@ -24,6 +47,7 @@ export default function InputPanel() {
                     border: 0;
                     background: #dd2c00;
                     margin: 10px;
+                    outline: none;
                 }
 
                 .input {
