@@ -22,8 +22,9 @@ export default function Header({ userName }) {
                 left: 0;
                 padding: 0 64px;
                 box-sizing: border-box;
-                background: #e7717d;
-                color: #fff;
+                background: #fff;
+                box-shadow: 1px 0 6px #ccc;
+                color: #000;
             }
             
             .title {

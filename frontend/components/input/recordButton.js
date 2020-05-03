@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import voiceRecorder from '../../services/recordVoice';
 
-export default function RecordButton() {
+export default function RecordButton({ onStartRecording, onStopRecording }) {
     const [loudness, setLoudness] = useState(0);
     const requestRef = useRef();
 
@@ -13,6 +13,9 @@ export default function RecordButton() {
 
     const mouseDown = () => {
         voiceRecorder.startRecording().then(() => {
+            if (onStartRecording) {
+                onStartRecording();
+            }
             requestRef.current = requestAnimationFrame(animate);
         });
     };
@@ -20,7 +23,10 @@ export default function RecordButton() {
     const mouseUp = () => {
         setLoudness(0);
 
-        voiceRecorder.stopRecording().then((url) => {
+        voiceRecorder.stopRecording().then((blob) => {
+            if (onStopRecording) {
+                onStopRecording(blob);
+            }
             cancelAnimationFrame(requestRef.current);
         });
     };
@@ -56,4 +62,9 @@ export default function RecordButton() {
             `}</style>
         </>
     )
+}
+
+RecordButton.defaultProps = {
+    onStartRecording: () => {},
+    onStopRecording: () => {},
 }

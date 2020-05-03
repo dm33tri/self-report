@@ -5,7 +5,10 @@ export default function ChatMessage({ message }) {
         <>
             <div className={message.out ? 'out' : ''}>
                 <div className={'bubble'}>
-                    {message.message}
+                    {message.media 
+                        ? <audio controls src={`/${message.media}`} />
+                        : message.message
+                    }
                 </div>
             </div>
 
