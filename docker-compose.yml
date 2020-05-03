@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  db:
+    image: postgres:11.2-alpine
+    expose:
+      - 5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=selfreport
   frontend:
     build: frontend
     expose:
@@ -11,4 +21,18 @@ services:
       - ENV=dev
     ports:
       - "3000:3000"
+  backend:
+    build: backend
+    expose:
+      - 8000
+    volumes:
+      - ./backend:/app
+    environment:
+      - ENV=dev
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
 
+volumes:
+  pg_data:
