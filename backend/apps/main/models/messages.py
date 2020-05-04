@@ -20,6 +20,11 @@ class Message(Model):
         size=10,
         blank=True
     )
+    buttons = ArrayField(
+        CharField(max_length=200, blank=True),
+        size=10,
+        blank=True
+    )
     date = DateTimeField('Время создания', auto_now_add=True)
 
     # dialog = pass TODO

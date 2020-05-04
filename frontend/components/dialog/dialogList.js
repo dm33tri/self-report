@@ -9,6 +9,7 @@ export default function DialogList() {
         <>
             <div className="wrapper">
                 <div className="list">
+                    <DialogItem item={{ name: 'Все сообщения' }} />
                     {dialogs.map((dialog, index) => <DialogItem key={index} item={dialog} />)}
                 </div>
             </div>

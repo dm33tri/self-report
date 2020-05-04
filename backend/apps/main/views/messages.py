@@ -38,9 +38,11 @@ class CreateMessageView(GenericAPIView):
         recipient = data.get('recipient', None)
         text = data.get('text', None)
         media = data.get('media', [])
-
+        dialog_id = data.get('dialog_id', None)
         date = datetime.datetime.now()
-        dialog = self.get_object()
+
+        dialog = Dialog.objects.filter(id=dialog_id).get() if dialog_id is not None else self.get_object()
+
         sender = sender if sender is not None else \
             self.get_object().sender
         recipient = recipient if recipient is not None else \
@@ -49,9 +51,10 @@ class CreateMessageView(GenericAPIView):
         Message.objects.create(
             text=text,
             media=media,
+            buttons=[],
             date=date,
             recipient=recipient,
             sender=sender,
-            dialog=dialog
+            dialog=dialog,
         )
         return Response({})

@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 import Audio from './audio';
-
+import sendMessage from '../../actions/sendMessage';
 import { useSelector } from 'react-redux';
 
 export default function ChatMessage({ message }) {
@@ -19,7 +19,7 @@ export default function ChatMessage({ message }) {
                 </div>
                 <div className="buttons">
                     {message.buttons && message.buttons.map((button, index) => {
-                        return <button className="button" key={index}>{button.text}</button>
+                        return <button className="button" key={index} onClick={() => sendMessage({ text: button })}>{button}</button>
                     })}
                 </div>
             </div>

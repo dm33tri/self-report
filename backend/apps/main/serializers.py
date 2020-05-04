@@ -90,7 +90,8 @@ class MessageSerializer(serializers.ModelSerializer):
             'date',
             'recipient',
             'sender',
-            'dialog'
+            'dialog',
+            'buttons'
         ]
 
 

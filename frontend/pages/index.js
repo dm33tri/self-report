@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>SelfReview</title>
+                <title>SelfReport</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="page">

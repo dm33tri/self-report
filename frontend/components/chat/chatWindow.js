@@ -4,7 +4,8 @@ import Message from './chatMessage';
 import InputPanel from '../input/inputPanel';
 
 export default function ChatWindow() {
-    const messages = useSelector((state = {}) => state.messages);
+    const dialog = useSelector((state) => state.currentDialog);
+    const messages = useSelector((state) => state.messages).filter((message) => dialog === undefined || message.dialog.id === dialog);
 
     return (
         <>
