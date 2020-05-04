@@ -7,6 +7,7 @@ const ADD_DIALOGS = 'addDialogs';
 export const addDialogs = (dialogs) => ({ type: ADD_DIALOGS, dialogs });
 
 const initialState = {
+    userId: 1,
     messages: [],
     dialogs: [],
 };

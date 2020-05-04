@@ -15,7 +15,7 @@ from apps.main.models.tasks import Task
 class IdUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id']
+        fields = ['id', 'username']
 
 
 class IdProfileSerializer(serializers.ModelSerializer):

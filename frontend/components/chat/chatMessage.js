@@ -3,12 +3,15 @@ import Markdown from 'react-markdown';
 import Audio from './audio';
 
 export default function ChatMessage({ message }) {
+    const senderName = message.sender.user.username;
+
     return (
         <>
             <div className={message.out ? 'out' : ''}>
                 <div className="bubble">
-                    {message.media && <Audio src={`/${message.media}`} />}
-                    {message.message && <Markdown source={message.message} />}
+                    <div className="userName">{senderName}</div>
+                    {message.media && message.media.length > 0 && <Audio src={`/${message.media}`} />}
+                    {message.text && <Markdown source={message.text} />}
                 </div>
                 <div className="buttons">
                     {message.buttons && message.buttons.map((button, index) => {
@@ -21,6 +24,11 @@ export default function ChatMessage({ message }) {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
+
+                .userName {
+                    margin: 10px 0 0 0;
+                    font-weight: bold;
+                }
 
                 .bubble {
                     min-width: 250px;

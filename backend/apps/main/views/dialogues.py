@@ -13,7 +13,7 @@ class DialogueRecipientView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        dialogues = Dialogue.objects.filter(recipient_id=self.kwargs['id'])
+        dialogues = Dialogue.objects.filter(recipient_id=self.request.GET.get('id', None))
         return dialogues
 
 
@@ -23,5 +23,5 @@ class DialogueSenderView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        dialogues = Dialogue.objects.filter(sender_id=self.kwargs['id'])
+        dialogues = Dialogue.objects.filter(sender_id=self.request.GET.get('id', None))
         return dialogues
