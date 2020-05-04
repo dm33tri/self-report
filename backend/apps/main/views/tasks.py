@@ -19,7 +19,7 @@ class TaskView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        tasks = Task.objects.filter(id=self.kwargs['id'])
+        tasks = Task.objects.filter(id=self.request.GET['id'])
         return tasks
 
 
@@ -29,6 +29,5 @@ class TaskByProfileView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        print('aaaaaaaaaaaaaaaaa')
-        tasks = Task.objects.filter(executor_id=self.kwargs['id'])
+        tasks = Task.objects.filter(executor_id=self.request.GET['id'])
         return tasks

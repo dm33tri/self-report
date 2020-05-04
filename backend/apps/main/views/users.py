@@ -16,5 +16,5 @@ class UserView(ListAPIView):
 
     def get_queryset(self):
 
-        user = Profile.objects.filter(user_id=self.request.GET.get('id', None))
+        user = Profile.objects.filter(user_id=self.request.GET['id'])
         return user

@@ -7,5 +7,5 @@ if [ "$ENV" = "dev" ]; then
 	touch .package.json
     fi
   echo "Starting dev server"
-  exec npm run dev
+  npm run dev
 fi

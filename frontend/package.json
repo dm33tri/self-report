@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "cookie": "^0.4.1",
     "formidable": "^1.2.2",
     "next": "9.3.6",
     "react": "16.13.1",

@@ -2,12 +2,16 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import Audio from './audio';
 
+import { useSelector } from 'react-redux';
+
 export default function ChatMessage({ message }) {
     const senderName = message.sender.user.username;
+    const userId = useSelector((state) => state.userId);
+    const out = userId === message.sender.user.id;
 
     return (
         <>
-            <div className={message.out ? 'out' : ''}>
+            <div className={out ? 'out' : ''}>
                 <div className="bubble">
                     <div className="userName">{senderName}</div>
                     {message.media && message.media.length > 0 && <Audio src={`/${message.media}`} />}

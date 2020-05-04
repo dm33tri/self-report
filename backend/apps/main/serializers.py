@@ -7,7 +7,7 @@ from rest_framework.fields import (
 
 
 from apps.main.models.users import Profile
-from apps.main.models.dialogues import Dialogue
+from apps.main.models.dialogs import Dialog
 from apps.main.models.messages import Message
 from apps.main.models.tasks import Task
 
@@ -26,9 +26,9 @@ class IdProfileSerializer(serializers.ModelSerializer):
         fields = ['user']
 
 
-class IdDialogueSerializer(serializers.ModelSerializer):
+class IdDialogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dialogue
+        model = Dialog
         fields = ['id']
 
 
@@ -54,7 +54,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         ]
 
 
-class DialogueSerializer(serializers.ModelSerializer):
+class DialogSerializer(serializers.ModelSerializer):
     name = CharField()
     description = CharField()
 
@@ -62,7 +62,7 @@ class DialogueSerializer(serializers.ModelSerializer):
     sender = ProfileSerializer()
 
     class Meta:
-        model = Dialogue
+        model = Dialog
         fields = [
             'id',
             'name',
@@ -79,7 +79,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
     recipient = IdProfileSerializer(read_only=True)
     sender = IdProfileSerializer(read_only=True)
-    dialogue = IdDialogueSerializer(read_only=True)
+    dialog = IdDialogSerializer(read_only=True)
 
     class Meta:
         model = Message
@@ -90,7 +90,7 @@ class MessageSerializer(serializers.ModelSerializer):
             'date',
             'recipient',
             'sender',
-            'dialogue'
+            'dialog'
         ]
 
 

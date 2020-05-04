@@ -5,10 +5,10 @@ export default function DialogItem({ item }) {
         <>
             <div className="item">
                 <div className="title">
-                    {item.title}
+                    {item.name}
                 </div>
                 <div className="subTitle">
-                    {item.subTitle}
+                    {item.description}
                 </div>
                 <div className="status">
                     

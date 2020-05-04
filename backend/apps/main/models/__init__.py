@@ -1,4 +1,4 @@
 from .users import *
 from .messages import *
-from .dialogues import *
+from .dialogs import *
 from .tasks import *

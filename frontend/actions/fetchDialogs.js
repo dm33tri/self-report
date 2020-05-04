@@ -1,8 +1,10 @@
-import axios from 'axios';
-import store, { addDialogs } from '../store';
+import getApi from '../services/api';
+import store, { adddialogs } from '../store';
 
 export default function fetchMessages() {
-    return axios.get('/api/get_dialogs').then((response) => {
-        return store.dispatch(addDialogs(response.data));
+    const { userId } = store.getState();
+
+    return getApi().get('/get_dialogs', { params: { id: userId }}).then((response) => {
+        return store.dispatch(adddialogs(response.data));
     });
 }

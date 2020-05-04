@@ -6,12 +6,12 @@ import ChatWindow from '../components/chat/chatWindow';
 import DialogList from '../components/dialog/dialogList';
 
 import fetchMessages from '../actions/fetchMessages';
-import fetchDialogs from '../actions/fetchDialogs.js';
+import fetchdialogs from '../actions/fetchdialogs.js';
 
 export default function Home() {
     useEffect(() => {
         fetchMessages();
-        fetchDialogs();
+        fetchdialogs();
     }, []);
 
     return (

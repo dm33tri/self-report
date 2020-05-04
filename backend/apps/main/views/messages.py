@@ -1,5 +1,7 @@
 import datetime
 
+from django.db.models import Q
+
 from rest_framework.generics import ListAPIView, get_object_or_404, GenericAPIView
 from rest_framework.views import APIView
 from rest_framework import permissions
@@ -7,48 +9,26 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from apps.main.serializers import (
-    MessageSerializer, DialogueSerializer
+    MessageSerializer, DialogSerializer
 )
 
 from apps.main.models.messages import Message
-from apps.main.models.dialogues import Dialogue
+from apps.main.models.dialogs import Dialog
 from django.contrib.auth.models import User
 
-class MessageRecipientView(ListAPIView):
-
+class MessageView(ListAPIView):
     serializer_class = MessageSerializer
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        messages = Message.objects.filter(recipient_id=self.request.GET.get('id', None))
-        return messages
+        all_messages = Q(sender_id=self.request.GET['id']) | Q(recipient_id=self.request.GET['id']) 
+        dialog_messages = Q(dialog_id=self.request.GET['dialog_id']) if self.request.GET.get('dialog_id') else Q()
 
-
-class MessageSenderView(ListAPIView):
-
-    serializer_class = MessageSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def get_queryset(self):
-        messages = Message.objects.filter(sender_id=self.request.GET.get('id', None))
-        
-        return messages
-
-
-class MessageRecipientDialogueView(ListAPIView):
-
-    serializer_class = MessageSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def get_queryset(self):
-        messages = Message.objects.filter(recipient_id=self.request.GET.get('id', None)).filter(
-           dialogue_id=self.request.GET.get('dialog_id', None)
-        )
-        return messages
+        return Message.objects.filter(all_messages & dialog_messages)
 
 
 class CreateMessageView(GenericAPIView):
-    queryset = Dialogue.objects.all()
+    queryset = Dialog.objects.all()
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, pk):
@@ -60,7 +40,7 @@ class CreateMessageView(GenericAPIView):
         media = data.get('media', [])
 
         date = datetime.datetime.now()
-        dialogue = self.get_object()
+        dialog = self.get_object()
         sender = sender if sender is not None else \
             self.get_object().sender
         recipient = recipient if recipient is not None else \
@@ -72,6 +52,6 @@ class CreateMessageView(GenericAPIView):
             date=date,
             recipient=recipient,
             sender=sender,
-            dialogue=dialogue
+            dialog=dialog
         )
         return Response({})

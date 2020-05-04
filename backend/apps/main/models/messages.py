@@ -6,7 +6,7 @@ from django.db.models import (
 )
 
 from .users import Profile
-from .dialogues import Dialogue
+from .dialogs import Dialog
 
 
 class Message(Model):
@@ -18,7 +18,7 @@ class Message(Model):
     )
     date = DateTimeField('Время создания', auto_now_add=True)
 
-    # dialogue = pass TODO
+    # dialog = pass TODO
     recipient = ForeignKey(
         Profile, verbose_name='Получатель',
         on_delete=CASCADE, related_name='message_recipient'
@@ -27,9 +27,9 @@ class Message(Model):
         Profile, verbose_name='Отправитель',
         on_delete=CASCADE, related_name='message_sender'
     )
-    dialogue = ForeignKey(
-        Dialogue, verbose_name='Диалог',
-        on_delete=CASCADE, related_name='dialogue_related'
+    dialog = ForeignKey(
+        Dialog, verbose_name='Диалог',
+        on_delete=CASCADE, related_name='dialog_related'
     )
 
     def can_edit(self, user):

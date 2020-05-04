@@ -1,7 +1,7 @@
 from django.urls import include, path
 
 from .views import users
-from .views import dialogues
+from .views import dialogs
 from .views import messages
 from .views import tasks
 
@@ -11,43 +11,26 @@ from .views import tasks
 urlpatterns = [
     path('get_user/<str:id>/', users.UserView.as_view(), name='users'),
     path(
-        'get_dialogues_recipient/<str:id>/',
-        dialogues.DialogueRecipientView.as_view(),
-        name='dialogues_recipient'
-    ),
-    path(
         'get_dialogs',
-        dialogues.DialogueSenderView.as_view(),
-        name='dialogues_sender'
-    ),
-    path(
-        'get_messages_recipient/<str:id>/',
-        messages.MessageRecipientView.as_view(),
-        name='messages_recipient'
+        dialogs.DialogView.as_view(),
+        name='dialogs_sender'
     ),
     path(
         'get_messages',
-        messages.MessageSenderView.as_view(),
-        name='messages_sender'
+        messages.MessageView.as_view(),
+        name='messages_recipient'
     ),
     path(
-        'get_messages_recipient_dialogue/<str:id>/<str:dialogue_id>',
-        messages.MessageRecipientDialogueView.as_view(),
-        name='messages_recipient_dialogue'
-    ),
-
-    path(
-        'get_task/<str:id>/',
+        'get_task',
         tasks.TaskView.as_view(),
         name='task'
     ),
 
     path(
-        'get_tasks_by_user/<str:id>/',
+        'get_tasks_by_user',
         tasks.TaskByProfileView.as_view(),
         name='task'
     ),
 
-    path('send_message/<str:pk>/', messages.CreateMessageView.as_view()),
-
+    path('send_message', messages.CreateMessageView.as_view(), { 'pk': 1 }),
 ]
