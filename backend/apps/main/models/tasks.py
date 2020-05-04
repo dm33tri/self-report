@@ -1,5 +1,3 @@
-from django.contrib.postgres.fields import ArrayField
-
 from django.db.models import (
     Model, ForeignKey, DateTimeField,
     TextField, CASCADE, IntegerField
@@ -17,7 +15,7 @@ class Task(Model):
     )
 
     start_date = DateTimeField('Время создания', auto_now_add=True)
-    end_date = DateTimeField('Время создания', auto_now_add=False)
+    end_date = DateTimeField('Время окончания', auto_now=True, blank=True)
 
     executor = ForeignKey(
         Profile, verbose_name='Исполнитель',
