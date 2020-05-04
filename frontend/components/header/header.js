@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { Logo } from '../icons/icons';
-
 export default function Header({ userName }) {
     return <>
         <header className="header">
             <div className="title">
-                <Logo size={48} />SelfReport
+                💹 SelfReport
             </div>
             <div className="userMenu">
                 {userName}
@@ -23,7 +21,6 @@ export default function Header({ userName }) {
                 padding: 0 64px;
                 box-sizing: border-box;
                 background: #fff;
-                box-shadow: 0 0 6px #ccc;
                 color: #000;
                 position: relative;
                 z-index: 10;

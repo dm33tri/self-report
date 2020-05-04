@@ -8,7 +8,7 @@ export default function DialogItem({ item }) {
                     {item.title}
                 </div>
                 <div className="subTitle">
-                    {item.description}
+                    {item.subTitle}
                 </div>
                 <div className="status">
                     
@@ -21,7 +21,6 @@ export default function DialogItem({ item }) {
                     box-sizing: border-box;
                     width: 100%;
                     height: 80px;
-                    border-bottom: 1px solid #ccc;
                     background: #fff;
                 }
                 .title {

@@ -1,15 +1,6 @@
-export const messages = [
-    { message: 'Hello, world!', date: 1 }, 
-    { message: 'How are you?', date: 2 }, 
-    { message: 'Hello, friend!', out: true, date: 3 },
-    { message: 'Hello, friend!', out: true, date: 4 },
-    { message: 'Hello, friend!', out: true, date: 5 },
-    { message: 'Hello, friend!', out: true, date: 6 },
-    { message: 'How are you?', date: 7 }, 
-    { message: 'How are you?', date: 8 }, 
-    { message: 'How are you?', date: 9 },
+import messages from './messages.json';
 
-];
+export { messages };
 
 export default (req, res) => {
     const from = req.query && req.query.from || 0;

@@ -28,14 +28,15 @@ export default function InputPanel() {
                 {isRecording && <RecordProgress /> ||
                 record && <audio src={URL.createObjectURL(record)} controls /> ||
                 <input 
+                    autocomplete="off"
                     name="text" 
                     className="input" 
                     type="text" 
                     value={text} 
                     onChange={(event) => setText(event.target.value)} 
                 />}
-                <RecordButton onStopRecording={stopRecording} onStartRecording={startRecording}><Voice size={20} /></RecordButton>
-                <button type="submit"><Send size={16} /></button>
+                <RecordButton onStopRecording={stopRecording} onStartRecording={startRecording}><Voice size={24} /></RecordButton>
+                <button type="submit"><Send size={24} /></button>
             </form>
 
             <style jsx>{`
@@ -49,7 +50,6 @@ export default function InputPanel() {
                     bottom: 0;
                     right: 0;
                     background: #fff;
-                    box-shadow: 0 0 6px #ccc;
                 }
 
                 audio {
@@ -65,9 +65,11 @@ export default function InputPanel() {
                     height: 32px;
                     border-radius: 100%;
                     border: 0;
-                    background: #dd2c00;
+                    background: #bbf;
                     margin: 10px;
                     outline: none;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .input {

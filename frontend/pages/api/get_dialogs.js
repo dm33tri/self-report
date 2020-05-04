@@ -1,8 +1,4 @@
-export const dialogs = [
-    { title: 'Task-123', description: 'Test' }, 
-    { title: 'Task-234', description: 'Test' }, 
-    { title: 'Task-456', description: 'Test' }, 
-];
+import dialogs from './tasks.json';
 
 export default (req, res) => {
     res.statusCode = 200;

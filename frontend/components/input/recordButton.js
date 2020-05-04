@@ -39,7 +39,7 @@ export default function RecordButton({ onStartRecording, onStopRecording, childr
                 onMouseDown={mouseDown} 
                 onMouseUp={mouseUp}
                 style={{
-                    boxShadow: `0 0 0 ${loudness}px #b2ebf2`
+                    boxShadow: `0 0 0 ${loudness}px #ddf`
                 }}
             >
                 {children}
@@ -50,12 +50,15 @@ export default function RecordButton({ onStartRecording, onStopRecording, childr
                     width: 32px;
                     height: 32px;
                     box-sizing: border-box;
-                    background: #00bcd4;
+                    background: #bbf;
                     border-radius: 100%;
                     border: 0;
                     outline: none;
                     margin-left: 10px;
-
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .recordButton:active {

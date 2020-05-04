@@ -15,8 +15,6 @@ export default function DialogList() {
             <style jsx>{`
                 .list {
                     width: 100%;
-                    border-right: 1px solid #ccc;
-                    background: #eee;
                     max-width: 400px;
                     position: sticky;
                     top: 0;
@@ -24,8 +22,6 @@ export default function DialogList() {
                 .wrapper {
                     display: block;
                     width: 100%;
-                    border-right: 1px solid #ccc;
-                    background: #eee;
                     max-width: 400px;
                 }
             `}</style>
