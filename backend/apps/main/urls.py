@@ -3,6 +3,7 @@ from django.urls import include, path
 from .views import users
 from .views import dialogues
 from .views import messages
+from .views import tasks
 
 
 # Wire up our API using automatic URL routing.
@@ -34,5 +35,19 @@ urlpatterns = [
         messages.MessageRecipientDialogueView.as_view(),
         name='messages_recipient_dialogue'
     ),
+
+    path(
+        'get_task/<str:id>/',
+        tasks.TaskView.as_view(),
+        name='task'
+    ),
+
+    path(
+        'get_tasks_by_user/<str:id>/',
+        tasks.TaskByProfileView.as_view(),
+        name='task'
+    ),
+
     path('send_message/<str:pk>/', messages.CreateMessageView.as_view()),
+
 ]
