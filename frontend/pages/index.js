@@ -9,31 +9,39 @@ import fetchMessages from '../actions/fetchMessages';
 import fetchDialogs from '../actions/fetchDialogs.js';
 
 export default function Home() {
-  useEffect(() => {
-    fetchMessages();
-    fetchDialogs();
-  }, []);
+    useEffect(() => {
+        fetchMessages();
+        fetchDialogs();
+    }, []);
 
-  return (
-    <>
-      <Head>
-        <title>Title</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header userName="dm33tri"/>
-      <div className="layout">
-        <DialogList />
-        <ChatWindow />
-      </div>
+    return (
+        <>
+            <Head>
+                <title>Title</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className="page">
+                <Header userName="dm33tri" />
+                <div className="layout">
+                    <DialogList />
+                    <ChatWindow />
+                </div>
+            </div>
 
-      <style jsx>{`
-        .layout {
-          display: flex;
-          width: 100%;
-          min-height: 100vh;
-          flex-direction: row;
-        }
-      `}</style>
-    </>
-  )
+
+            <style jsx>{`
+                .page {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .layout {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    flex-direction: row;
+                }
+            `}</style>
+        </>
+    )
 }
