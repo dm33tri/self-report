@@ -14,7 +14,7 @@ from apps.main.models.messages import Message
 class IdUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id']
+        fields = ['id', 'username']
 
 
 class IdProfileSerializer(serializers.ModelSerializer):

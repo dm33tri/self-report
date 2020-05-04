@@ -12,7 +12,7 @@ from apps.main.serializers import (
 
 from apps.main.models.messages import Message
 from apps.main.models.dialogues import Dialogue
-
+from django.contrib.auth.models import User
 
 class MessageRecipientView(ListAPIView):
 
@@ -20,7 +20,7 @@ class MessageRecipientView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        messages = Message.objects.filter(recipient_id=self.kwargs['id'])
+        messages = Message.objects.filter(recipient_id=self.request.GET.get('id', None))
         return messages
 
 
@@ -30,7 +30,8 @@ class MessageSenderView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        messages = Message.objects.filter(sender_id=self.kwargs['id'])
+        messages = Message.objects.filter(sender_id=self.request.GET.get('id', None))
+        
         return messages
 
 
@@ -40,8 +41,8 @@ class MessageRecipientDialogueView(ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        messages = Message.objects.filter(recipient_id=self.kwargs['id']).filter(
-           dialogue_id=self.kwargs['dialogue_id']
+        messages = Message.objects.filter(recipient_id=self.request.GET.get('id', None)).filter(
+           dialogue_id=self.request.GET.get('dialog_id', None)
         )
         return messages
 
