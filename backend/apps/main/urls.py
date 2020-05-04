@@ -9,24 +9,24 @@ from .views import tasks
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('get_user/<str:id>/', users.UserView.as_view(), name='users'),
+    path('get_user/<str:id>', users.UserView.as_view(), name='users'),
     path(
-        'get_dialogues_recipient/<str:id>/',
+        'get_dialogues_recipient/<str:id>',
         dialogues.DialogueRecipientView.as_view(),
         name='dialogues_recipient'
     ),
     path(
-        'get_dialogs',
+        'get_dialogs/<str:id>',
         dialogues.DialogueSenderView.as_view(),
         name='dialogues_sender'
     ),
     path(
-        'get_messages_recipient/<str:id>/',
+        'get_messages_recipient/<str:id>',
         messages.MessageRecipientView.as_view(),
         name='messages_recipient'
     ),
     path(
-        'get_messages',
+        'get_messages/<str:id>',
         messages.MessageSenderView.as_view(),
         name='messages_sender'
     ),
@@ -37,17 +37,17 @@ urlpatterns = [
     ),
 
     path(
-        'get_task/<str:id>/',
+        'get_task/<str:id>',
         tasks.TaskView.as_view(),
         name='task'
     ),
 
     path(
-        'get_tasks_by_user/<str:id>/',
+        'get_tasks_by_user/<str:id>',
         tasks.TaskByProfileView.as_view(),
         name='task'
     ),
 
-    path('send_message/<str:pk>/', messages.CreateMessageView.as_view()),
+    path('send_message/<str:pk>', messages.CreateMessageView.as_view()),
 
 ]
