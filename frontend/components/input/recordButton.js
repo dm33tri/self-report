@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import voiceRecorder from '../../services/recordVoice';
 
-export default function RecordButton({ onStartRecording, onStopRecording }) {
+export default function RecordButton({ onStartRecording, onStopRecording, children }) {
     const [loudness, setLoudness] = useState(0);
     const requestRef = useRef();
 
@@ -41,7 +41,9 @@ export default function RecordButton({ onStartRecording, onStopRecording }) {
                 style={{
                     boxShadow: `0 0 0 ${loudness}px #b2ebf2`
                 }}
-            />
+            >
+                {children}
+            </button>
 
             <style jsx>{`
                 .recordButton {

@@ -1,9 +1,14 @@
-import fs from 'fs';
-
 export const messages = [
-    { message: 'Hello, world!', date: 0 }, 
-    { message: 'How are you?', date: 1 }, 
-    { message: 'Hello, friend!', out: true, date: 2 }
+    { message: 'Hello, world!', date: 1 }, 
+    { message: 'How are you?', date: 2 }, 
+    { message: 'Hello, friend!', out: true, date: 3 },
+    { message: 'Hello, friend!', out: true, date: 4 },
+    { message: 'Hello, friend!', out: true, date: 5 },
+    { message: 'Hello, friend!', out: true, date: 6 },
+    { message: 'How are you?', date: 7 }, 
+    { message: 'How are you?', date: 8 }, 
+    { message: 'How are you?', date: 9 },
+
 ];
 
 export default (req, res) => {

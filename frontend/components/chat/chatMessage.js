@@ -15,18 +15,23 @@ export default function ChatMessage({ message }) {
             <style jsx>{`
                 display: flex;
                 flex-direction: column;
+                align-items: flex-start;
 
                 .bubble {
                     min-width: 300px;
                     max-width: 600px;
                     background: #eee;
-                    border-radius: 15px;
+                    border-radius: 30px;
                     padding: 15px 20px;
                     margin-top: 10px;
                 }
 
                 .out {
                     align-items: flex-end;
+                }
+
+                .out .bubble { 
+                    background: #eef;
                 }
             `}</style>
         </>
