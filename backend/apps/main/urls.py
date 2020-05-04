@@ -15,7 +15,7 @@ urlpatterns = [
         name='dialogues_recipient'
     ),
     path(
-        'get_dialogues_sender/<str:id>/',
+        'get_dialogs/<str:id>/',
         dialogues.DialogueSenderView.as_view(),
         name='dialogues_sender'
     ),
@@ -25,7 +25,7 @@ urlpatterns = [
         name='messages_recipient'
     ),
     path(
-        'get_messages_sender/<str:id>/',
+        'get_messages/<str:id>/',
         messages.MessageSenderView.as_view(),
         name='messages_sender'
     ),
