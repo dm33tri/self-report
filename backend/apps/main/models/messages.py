@@ -5,9 +5,13 @@ from django.db.models import (
     TextField, CASCADE, CharField
 )
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from .users import Profile
 from .dialogs import Dialog
 
+from apps.main.bot import bot_answer
 
 class Message(Model):
     text = TextField('Текст')
@@ -44,3 +48,8 @@ class Message(Model):
     class Meta:
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'
+
+
+@receiver(post_save, sender=Message)
+def handle_new_message(sender, **kwargs):
+    bot_answer(Message, **kwargs)
