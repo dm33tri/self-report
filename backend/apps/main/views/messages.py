@@ -14,11 +14,10 @@ from apps.main.models.messages import Message
 from apps.main.models.dialogues import Dialogue
 
 
-
 class MessageRecipientView(ListAPIView):
 
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         messages = Message.objects.filter(recipient_id=self.kwargs['id'])
@@ -28,7 +27,7 @@ class MessageRecipientView(ListAPIView):
 class MessageSenderView(ListAPIView):
 
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         messages = Message.objects.filter(sender_id=self.kwargs['id'])
@@ -38,7 +37,7 @@ class MessageSenderView(ListAPIView):
 class MessageRecipientDialogueView(ListAPIView):
 
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         messages = Message.objects.filter(recipient_id=self.kwargs['id']).filter(
