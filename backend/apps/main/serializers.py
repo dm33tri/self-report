@@ -9,6 +9,7 @@ from rest_framework.fields import (
 from apps.main.models.users import Profile
 from apps.main.models.dialogues import Dialogue
 from apps.main.models.messages import Message
+from apps.main.models.tasks import Task
 
 
 class IdUserSerializer(serializers.ModelSerializer):
@@ -90,4 +91,24 @@ class MessageSerializer(serializers.ModelSerializer):
             'recipient',
             'sender',
             'dialogue'
+        ]
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    text = CharField()
+    story_points = IntegerField()
+    start_date = DateTimeField()
+    end_date = DateTimeField()
+
+    executor = IdProfileSerializer(read_only=True)
+
+    class Meta:
+        model = Message
+        fields = [
+            'id',
+            'text',
+            'story_points',
+            'start_date',
+            'end_date',
+            'executor'
         ]
