@@ -9,7 +9,7 @@ from .views import tasks
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('get_user/<str:id>/', users.UserView.as_view(), name='users'),
+    path('get_user/<str:id>', users.UserView.as_view(), name='users'),
     path(
         'get_dialogs',
         dialogs.DialogView.as_view(),
@@ -21,13 +21,13 @@ urlpatterns = [
         name='messages_recipient'
     ),
     path(
-        'get_task',
+        'get_task/<str:id>',
         tasks.TaskView.as_view(),
         name='task'
     ),
 
     path(
-        'get_tasks_by_user',
+        'get_tasks_by_user/<str:id>',
         tasks.TaskByProfileView.as_view(),
         name='task'
     ),
