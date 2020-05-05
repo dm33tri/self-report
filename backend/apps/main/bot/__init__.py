@@ -35,7 +35,7 @@ def bot_answer(Message, **kwargs):
             text = 'Хорошо'
         if re.match('Взять в работу', message.text):
             text = 'Хорошо'
-            if re.match('Диалог с ботом', dialog.name):
+            if dialog.id == 1:
                 dialog = Dialog.objects.create(
                     name = '[BACK-213] Расширение storage',
                     description = 'Осталось примерно 6 часов',

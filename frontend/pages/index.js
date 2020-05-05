@@ -21,7 +21,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="page">
-                <Header userName="dm33tri" />
+                <Header userName="admin" />
                 <div className="layout">
                     <DialogList />
                     <ChatWindow />

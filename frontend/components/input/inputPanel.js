@@ -46,7 +46,9 @@ export default function InputPanel() {
                     align-items: center;
                     justify-content: space-between;
                     display: flex;
-                    position: sticky;
+                    position: fixed;
+                    box-sizing: border-box;
+                    padding-left: 400px;
                     bottom: 0;
                     right: 0;
                     background: #fff;

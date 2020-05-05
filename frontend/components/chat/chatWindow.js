@@ -26,6 +26,7 @@ export default function ChatWindow() {
 
                 .messages {
                     padding: 10px;
+                    padding-bottom: 64px;
                     min-height: calc(100% - 64px);
                     box-sizing: border-box;   
                 }
