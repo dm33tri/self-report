@@ -1,1 +1,2 @@
-# self-report
+## (sudo) make up
+(нужен докер)

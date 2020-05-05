@@ -1,0 +1,31 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import DialogItem from './dialogItem';
+
+export default function DialogList() {
+    const dialogs = useSelector((state = {}) => state.dialogs);
+
+    return (
+        <>
+            <div className="wrapper">
+                <div className="list">
+                    <DialogItem item={{ name: 'Все сообщения' }} />
+                    {dialogs.map((dialog, index) => <DialogItem key={index} item={dialog} />)}
+                </div>
+            </div>
+            <style jsx>{`
+                .list {
+                    width: 100%;
+                    max-width: 400px;
+                    position: sticky;
+                    top: 0;
+                }
+                .wrapper {
+                    display: block;
+                    width: 100%;
+                    max-width: 400px;
+                }
+            `}</style>
+        </>
+    )
+}
